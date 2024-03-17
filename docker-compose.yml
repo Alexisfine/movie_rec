@@ -2,7 +2,7 @@ version: '3'
 
 services:
   ranking:
-    image: goenv:0.0.1
+    image: goenv:0.0.12
     container_name: movie_rec_ranking
     ports:
       - 8003:80
