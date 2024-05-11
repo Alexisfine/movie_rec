@@ -29,7 +29,7 @@ func main() {
 
 	http.HandleFunc("/check_es", func(w http.ResponseWriter, r *http.Request) {
 		// send http request to es 
-		resp, err := http.Get("http://" + ip + ":9200/movie_catalog/_search")
+		resp, err := http.Get("http://" + ip + ":8080" + "/search/movie_catalog/_search")
 
 		if err != nil {
 			fmt.Printf("failed to get movie_catalog from elasticsearch {}", err)
