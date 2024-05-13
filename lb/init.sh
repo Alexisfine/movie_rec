@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Assign default values to HOST_IP, RANKING_PORT, and SEARCH_PORT
-export HOST_IP=$(ipconfig getifaddr en0)
 export RANKING_PORT=8000
 export SEARCH_PORT=9200
 
