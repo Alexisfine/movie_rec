@@ -30,11 +30,11 @@ http {
     gzip_disable "MSIE [1-6]\.";
 
     upstream ranking {
-        server 10.120.7.158:8000;
+        server ${HOST_IP}:${RANKING_PORT};
     }
 
     upstream search {
-        server 10.120.7.158:9200;
+        server ${HOST_IP}:${SEARCH_PORT};
     }
 
     server {
@@ -42,12 +42,12 @@ http {
         server_name localhost;
         
         location /ranking/ {
-            proxy_set_header Host 10.120.7.158;
+            proxy_set_header Host ${HOST_IP};
             proxy_pass http://ranking/;
         }
 
         location /search/ {
-            proxy_set_header Host 10.120.7.158;
+            proxy_set_header Host ${HOST_IP};
             proxy_pass http://search/;
         }
     }

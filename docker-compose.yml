@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  ranking1:
+  ranking:
     build:
       context: ./ranking
-    container_name: movie_rec_ranking_1
+    container_name: movie_rec_ranking
     volumes:
       - ./ranking:/go
     ports:
@@ -13,18 +13,7 @@ services:
       - 80
     stdin_open: true
     tty: true
-  ranking2:
-    build:
-        context: ./ranking
-    container_name: movie_rec_ranking_2
-    volumes:
-      - ./ranking:/go
-    ports:
-      - 8001:80
-    expose:
-      - 80
-    stdin_open: true
-    tty: true
+    command: go run hello.go ${HOST_IP}
   search:
     image: elasticsearch:7.9.3
     container_name: movie_rec_search
@@ -43,8 +32,4 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./lb/nginx.conf:/etc/nginx/nginx.conf:ro
-    environment:
-      - HOST_IP=192.168.0.2
-      - RANKING_1_PORT=8000
-      - RANKING_2_PORT=8001
+      - ./lb/nginx.conf:/etc/nginx/nginx.conf
